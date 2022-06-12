@@ -1,28 +1,28 @@
-const Router = require('express');
+const Router = require("express");
 const router = new Router();
-const authMiddleware = require('./middlewaree/authMiddleware');
-const User = require('./models/User');
+const authMiddleware = require("./middlewaree/authMiddleware");
+const User = require("./models/User");
 
-router.post('/fullName', authMiddleware, async (req, res) => {
+router.post("/fullName", authMiddleware, async (req, res) => {
   try {
     const thisUser = await User.findOne({ _id: req.user.id });
-    const fullname = req.body.fullname;
+    const fullName = req.body.fullName;
     User.updateOne(
       { username: thisUser.username },
-      { $set: { fullName: fullname } },
+      { $set: { fullName: fullName } },
       (err) => {
         if (err)
-          return res.status(200).json({ message: 'Error to update fullName!' });
+          return res.status(200).json({ message: "Error to update fullName!" });
       }
     );
-    return res.json({ message: 'Имя успешно изменено' });
+    return res.json({ message: "Имя успешно изменено" });
   } catch (e) {
     console.log(e);
-    res.status(400).json({ message: 'FullName error' });
+    res.status(400).json({ message: "FullName error" });
   }
 });
 
-router.post('/country', authMiddleware, async (req, res) => {
+router.post("/country", authMiddleware, async (req, res) => {
   try {
     const thisUser = await User.findOne({ _id: req.user.id });
     const country = req.body.country;
@@ -31,17 +31,17 @@ router.post('/country', authMiddleware, async (req, res) => {
       { $set: { country: country } },
       (err) => {
         if (err)
-          return res.status(200).json({ message: 'Error to update country!' });
+          return res.status(200).json({ message: "Error to update country!" });
       }
     );
-    return res.json({ message: 'Страна успешно изменена' });
+    return res.json({ message: "Страна успешно изменена" });
   } catch (e) {
     console.log(e);
-    res.status(400).json({ message: 'Country change error' });
+    res.status(400).json({ message: "Country change error" });
   }
 });
 
-router.post('/city', authMiddleware, async (req, res) => {
+router.post("/city", authMiddleware, async (req, res) => {
   try {
     const thisUser = await User.findOne({ _id: req.user.id });
     const city = req.body.city;
@@ -50,17 +50,17 @@ router.post('/city', authMiddleware, async (req, res) => {
       { $set: { city: city } },
       (err) => {
         if (err)
-          return res.status(200).json({ message: 'Error to update city!' });
+          return res.status(200).json({ message: "Error to update city!" });
       }
     );
-    return res.json({ message: 'Город успешно изменён' });
+    return res.json({ message: "Город успешно изменён" });
   } catch (e) {
     console.log(e);
-    res.status(400).json({ message: 'City change error' });
+    res.status(400).json({ message: "City change error" });
   }
 });
 
-router.post('/description', authMiddleware, async (req, res) => {
+router.post("/description", authMiddleware, async (req, res) => {
   try {
     const thisUser = await User.findOne({ _id: req.user.id });
     const description = req.body.description;
@@ -71,17 +71,17 @@ router.post('/description', authMiddleware, async (req, res) => {
         if (err)
           return res
             .status(200)
-            .json({ message: 'Error to update description!' });
+            .json({ message: "Error to update description!" });
       }
     );
-    return res.json({ message: 'Описание успешно изменено' });
+    return res.json({ message: "Описание успешно изменено" });
   } catch (e) {
     console.log(e);
-    res.status(400).json({ message: 'Description error' });
+    res.status(400).json({ message: "Description error" });
   }
 });
 
-router.post('/contact', authMiddleware, async (req, res) => {
+router.post("/contact", authMiddleware, async (req, res) => {
   try {
     const thisUser = await User.findOne({ _id: req.user.id });
     const contact = req.body.contact;
@@ -90,17 +90,17 @@ router.post('/contact', authMiddleware, async (req, res) => {
       { $set: { contact: contact } },
       (err) => {
         if (err)
-          return res.status(200).json({ message: 'Error to update contact!' });
+          return res.status(200).json({ message: "Error to update contact!" });
       }
     );
-    return res.json({ message: 'Контакты успешно изменены' });
+    return res.json({ message: "Контакты успешно изменены" });
   } catch (e) {
     console.log(e);
-    res.status(400).json({ message: 'contact error' });
+    res.status(400).json({ message: "contact error" });
   }
 });
 
-router.post('/interests', authMiddleware, async (req, res) => {
+router.post("/interests", authMiddleware, async (req, res) => {
   try {
     const thisUser = await User.findOne({ _id: req.user.id });
     const interests = req.body.interests;
@@ -111,13 +111,13 @@ router.post('/interests', authMiddleware, async (req, res) => {
         if (err)
           return res
             .status(200)
-            .json({ message: 'Error to update interests!' });
+            .json({ message: "Error to update interests!" });
       }
     );
-    return res.json({ message: 'Интересы успешно изменены' });
+    return res.json({ message: "Интересы успешно изменены" });
   } catch (e) {
     console.log(e);
-    res.status(400).json({ message: 'interests error' });
+    res.status(400).json({ message: "interests error" });
   }
 });
 
