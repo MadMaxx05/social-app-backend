@@ -1,30 +1,41 @@
-const Router = require('express')
-const router = new Router()
-const controller = require('./authController')
-const {check} = require("express-validator")
-const authMiddleware = require('./middlewaree/authMiddleware')
-const isItThatUserMiddleware = require('./middlewaree/isItThatUserMiddleware')
-const User = require('./models/User')
+const Router = require('express');
+const router = new Router();
+const controller = require('./authController');
+const authMiddleware = require('./middlewaree/authMiddleware');
 
-router.get('/users', authMiddleware, controller.getUsers)
+const User = require('./models/User');
+
+router.get('/users', authMiddleware, controller.getUsers);
 
 router.get('/user/:username', authMiddleware, async (req, res) => {
-    try {
-        const username = req.params.username;
-        const user = await User.findOne({username: username})
-        res.json(user)
-    } catch (e) {
-        console.log(e)
-    }
-})
+  try {
+    const username = req.params.username;
+    const user = await User.findOne({ username: username });
+    res.json(user);
+  } catch (e) {
+    console.log(e);
+  }
+});
 
-router.get('/users/:search', authMiddleware, async (req, res) => {
-    try {
-        const users = await User.find({interests: { $in: ['vaporizing', 'talking'] }})
-        res.json(users)
-    } catch (e) {
-        console.log(e)
-    }
-})
+router.get('/user', authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.user.id });
+    res.json(user);
+  } catch (e) {
+    console.log(e);
+  }
+});
 
-module.exports = router
+router.get('/search', authMiddleware, async (req, res) => {
+  try {
+    const search = req.body.search;
+    const users = await User.find({
+      interests: { $in: search.split(' ') },
+    });
+    res.json(users);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+module.exports = router;
