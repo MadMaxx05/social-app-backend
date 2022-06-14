@@ -30,7 +30,7 @@ router.get('/search', authMiddleware, async (req, res) => {
   try {
     const search = req.body.search;
     const users = await User.find({
-      interests: { $in: search.split(' ') },
+      interests: { $regex: search, $options: 'i' }
     });
     res.json(users);
   } catch (e) {

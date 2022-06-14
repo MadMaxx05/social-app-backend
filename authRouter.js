@@ -5,8 +5,8 @@ const {check} = require("express-validator")
 const authMiddleware = require('./middlewaree/authMiddleware')
 
 router.post('/registration', [
-    check('username', "Имя пользователя не может быть пустым").notEmpty(),
-    check('password', "Пароль должен быть больше 4 и меньше 10 символов").isLength({min:4, max:10})
+    check('username', "Name field can't be empty").notEmpty(),
+    check('password', "Password be more that 4 and less than 15 symbols").isLength({min:4, max:15})
 ], controller.registration)
 
 router.post('/login', controller.login)

@@ -15,7 +15,7 @@ router.post("/fullName", authMiddleware, async (req, res) => {
           return res.status(200).json({ message: "Error to update fullName!" });
       }
     );
-    return res.json({ message: "Имя успешно изменено" });
+    return res.json({ message: "Name was changed successfully" });
   } catch (e) {
     console.log(e);
     res.status(400).json({ message: "FullName error" });
@@ -34,7 +34,7 @@ router.post("/country", authMiddleware, async (req, res) => {
           return res.status(200).json({ message: "Error to update country!" });
       }
     );
-    return res.json({ message: "Страна успешно изменена" });
+    return res.json({ message: "Country was changed successfully" });
   } catch (e) {
     console.log(e);
     res.status(400).json({ message: "Country change error" });
@@ -53,7 +53,7 @@ router.post("/city", authMiddleware, async (req, res) => {
           return res.status(200).json({ message: "Error to update city!" });
       }
     );
-    return res.json({ message: "Город успешно изменён" });
+    return res.json({ message: "City was changed successfully" });
   } catch (e) {
     console.log(e);
     res.status(400).json({ message: "City change error" });
@@ -74,7 +74,7 @@ router.post("/description", authMiddleware, async (req, res) => {
             .json({ message: "Error to update description!" });
       }
     );
-    return res.json({ message: "Описание успешно изменено" });
+    return res.json({ message: "Description was changed successfully" });
   } catch (e) {
     console.log(e);
     res.status(400).json({ message: "Description error" });
@@ -93,7 +93,7 @@ router.post("/contact", authMiddleware, async (req, res) => {
           return res.status(200).json({ message: "Error to update contact!" });
       }
     );
-    return res.json({ message: "Контакты успешно изменены" });
+    return res.json({ message: "Contact was changed successfully" });
   } catch (e) {
     console.log(e);
     res.status(400).json({ message: "contact error" });
@@ -114,7 +114,7 @@ router.post("/interests", authMiddleware, async (req, res) => {
             .json({ message: "Error to update interests!" });
       }
     );
-    return res.json({ message: "Интересы успешно изменены" });
+    return res.json({ message: "Interests were changed successfully" });
   } catch (e) {
     console.log(e);
     res.status(400).json({ message: "interests error" });
