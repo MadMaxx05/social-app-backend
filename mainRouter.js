@@ -29,9 +29,14 @@ router.get("/user", authMiddleware, async (req, res) => {
 router.post("/search", authMiddleware, async (req, res) => {
   try {
     const search = req.body.search;
+    const user = await User.findOne({ _id: req.user.id });
     const users = await User.find({
       interests: { $regex: search, $options: "i" },
-    });
+      }
+    )
+    .where('username')
+    .ne(user.username)
+    .limit(50);
     res.json(users);
   } catch (e) {
     console.log(e);
